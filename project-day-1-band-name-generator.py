@@ -1,3 +1,4 @@
+# Band Name Generator project, simple code to combine 2 lines of string
 print("Welcome to the Band Name Generator.")
 
 city_name = input("What's name of the city you grew up in?\n")
