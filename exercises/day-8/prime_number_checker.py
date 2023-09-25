@@ -18,3 +18,4 @@ def prime_checker(number):
 # Do NOT change any of the code below👇
 n = int(input("Check this number: "))
 prime_checker(number=n)
+
