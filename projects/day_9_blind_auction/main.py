@@ -1,4 +1,4 @@
-# from replit import clear
+from replit import clear
 # HINT: You can call clear() to clear the output in the console.
 from art import logo
 
@@ -24,4 +24,5 @@ while bidding:
     if more_bidders == "no":
         bidding = False
         print(f"The winner is {} with a bid of ${}")
+
 
