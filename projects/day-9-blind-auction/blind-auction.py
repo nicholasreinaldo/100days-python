@@ -7,12 +7,14 @@ print("Welcome to the secret auction program.")
 
 bid_pool = []
 
+
 def new_bid(input_name, input_bid):
     new_bidder = {
         "bidder_name": input_name,
         "bid_amount": input_bid,
     }
     bid_pool.append(new_bidder)
+
 
 bidding = True
 while bidding:
@@ -30,3 +32,5 @@ while bidding:
         print(f"The winner is {highest_bidder_name} with a bid of ${highest_bid_amount}")
     elif more_bidders == "yes":
         clear()
+
+print(bid_pool)
