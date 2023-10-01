@@ -8,4 +8,4 @@ countries = []
 for visit in travel_log:
     countries.append(travel_log[1]["country"])
 
-print(countries)
+print(countries) 
