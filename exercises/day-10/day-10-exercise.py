@@ -1,5 +1,5 @@
 # Functions with Outputs
-length = len(formatted_name)
+# length = len(formatted_name)
 def format_name(f_name, l_name):
     """Take a first and last name and format it
     return the title case version of the name."""
