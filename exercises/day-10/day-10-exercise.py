@@ -5,8 +5,8 @@ def format_name(f_name, l_name):
     return the title case version of the name."""
     if f_name == "" or l_name == "":
         return
-    formated_f_name = f_name.title()
-    formated_l_name = l_name.title()
-    return f"{formated_f_name} {formated_l_name}"
+    formatted_f_name = f_name.title()
+    formatted_l_name = l_name.title()
+    return f"{formatted_f_name} {formatted_l_name}"
 
 print(format_name("nicholas", "reinaldo"))
