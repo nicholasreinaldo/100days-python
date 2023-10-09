@@ -1,11 +1,12 @@
-travel_log = {
-        "country": "France",
-        "visits": 12,
-        "cities": ["Paris", "Lille", "Dijon"]
-    }
+import random
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+player_card = []
+computer_card = []
+play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
 
-countries = []
-for visit in travel_log:
-    countries.append(travel_log[1]["country"])
+for starting_card in range(2):
+    player_card.append(random.choice(cards))
+    computer_card.append(random.choice(cards))
 
-print(countries) 
+print(computer_card[1])
+print(computer_card)

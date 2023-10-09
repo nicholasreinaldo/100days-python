@@ -17,14 +17,53 @@
 # # Cards are not removed from the deck as they are drawn.
 # # The computer is the dealer.
 
+import random
 from art import logo
-play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+player_card = []
+computer_card = []
 
-print(logo)
-print(f"    Your cards: [{ }, { }], current score: { }")
+player_card_value = sum(player_card)
+computer_card_value = sum(computer_card)
 
-draw = input("Type 'y' to get another card, type 'n' to pass: ")
+def final_hands():
+    print(f"    Your final hand = {player_card}, final score = {player_card_value}")
+    print(f"    Computer's final hand = {computer_card}, final score = {computer_card_value}")
 
+def play_poker():
+    play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+    if play == "y":
+        print(logo)
+        for starting_card in range(2):
+            player_card.append(random.choice(cards))
+            computer_card.append(random.choice(cards))
+        print(f"    Your cards: {player_card}, current score: {player_card_value}")
+        if computer_card_value == 21:
+            print(final_hands())
+            print("You lose.")
+        elif player_card_value == 21 & computer_card_value == 21:
+            print(final_hands())
+            print("You lose.")
+        elif player_card_value == 21:
+            print(final_hands())
+            print("You win.")
+        elif player_card_value > 21:
+            if 11 in player_card:
+                for i in range(len(player_card)):
+                    if player_card[i] == 11:
+                        player_card[i] = 1
+            else:
+                print(final_hands())
+                print("You went over. You lose.")
+        else:
+            print(f"Your cards: {player_card}, current score: {player_card_value} Computer's first card: {computer_card[0]}")
+
+            draw = input("Type 'y' to get another card, type 'n' to pass: ")
+            if draw == "y":
+                player_card.append(random.choice(cards))
+
+
+play_poker()
 
 # #################### Hints #####################
 
