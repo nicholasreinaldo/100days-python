@@ -19,52 +19,99 @@
 
 import random
 from art import logo
+
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-player_card = []
-computer_card = []
 
-player_card_value = sum(player_card)
-computer_card_value = sum(computer_card)
+def final_hands(player_card, computer_card):
+    player_card_value = sum(player_card)
+    computer_card_value = sum(computer_card)
+    player_hand = f"Your final hand = {player_card}, final score = {player_card_value}"
+    computer_hand = f"Computer's final hand = {computer_card}, final score = {computer_card_value}"
+    return f"{player_hand}\n{computer_hand}"
 
-def final_hands():
-    print(f"    Your final hand = {player_card}, final score = {player_card_value}")
-    print(f"    Computer's final hand = {computer_card}, final score = {computer_card_value}")
+def add_player_card(player_card):
+    player_card.append(random.choice(cards))
 
-def play_poker():
-    play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
-    if play == "y":
+def play_blackjack():
+    while True:
+        player_card = []
+        computer_card = []
+        player_card_value = 0
+        computer_card_value = 0
+
+        play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+        if play == "n":
+            break
+
         print(logo)
+
+        # Starting Deck
         for starting_card in range(2):
             player_card.append(random.choice(cards))
             computer_card.append(random.choice(cards))
-        print(f"    Your cards: {player_card}, current score: {player_card_value}")
-        if computer_card_value == 21:
-            print(final_hands())
+
+        # Starting deck Blackjack checking
+        if (11 in computer_card) and (10 in computer_card):
+            result = final_hands(player_card, computer_card)
+            print(result)
             print("You lose.")
-        elif player_card_value == 21 & computer_card_value == 21:
-            print(final_hands())
-            print("You lose.")
-        elif player_card_value == 21:
-            print(final_hands())
-            print("You win.")
-        elif player_card_value > 21:
-            if 11 in player_card:
-                for i in range(len(player_card)):
-                    if player_card[i] == 11:
-                        player_card[i] = 1
+        elif (11 in player_card) and (10 in player_card):
+            if (11 in computer_card) and (10 in computer_card):
+                result = final_hands(player_card, computer_card)
+                print(result)
+                print("You lose.")
             else:
-                print(final_hands())
-                print("You went over. You lose.")
+                result = final_hands(player_card, computer_card)
+                print(result)
+                print("You win.")
         else:
-            print(f"Your cards: {player_card}, current score: {player_card_value} Computer's first card: {computer_card[0]}")
+            player_card_value = sum(player_card)
+            computer_card_value = sum(computer_card)
+            drawing = True
+            while drawing:
+                print(f"Your cards: {player_card}, current score: {player_card_value}")
+                print(f"Computer's first card: {computer_card[0]}")
+                draw = input("Type 'y' to get another card, type 'n' to pass: ")
+                if draw == "y":
+                    player_card.append(random.choice(cards))
+                    player_card_value = sum(player_card)
+                    if player_card_value > 21:
+                        if 11 in player_card:
+                            for i in range(len(player_card)):
+                                if player_card[i] == 11:
+                                    player_card[i] = 1
+                                    player_card_value = sum(player_card)
+                        else:
+                            result = final_hands(player_card, computer_card)
+                            print(result)
+                            print("You went over. You lose.")
+                            drawing = False
+                elif draw == "n":
+                    drawing = False
+                    while computer_card_value < 17:
+                        computer_card.append(random.choice(cards))
+                        computer_card_value = sum(computer_card)
+                    result = final_hands(player_card, computer_card)
+                    print(result)
+                    if computer_card_value > 21:
+                        if 11 in computer_card:
+                            for i in range(len(computer_card)):
+                                if computer_card[i] == 11:
+                                    computer_card[i] = 1
+                                    player_card_value = sum(player_card)
+                        else:
+                            print("Opponent went over. You win.")
+                    else:
+                        if player_card_value > computer_card_value:
+                            print("You win.")
+                        elif computer_card_value > player_card_value:
+                            print("You lost.")
 
-            draw = input("Type 'y' to get another card, type 'n' to pass: ")
-            if draw == "y":
-                player_card.append(random.choice(cards))
+        play_again = input("Do you want to play again? Type 'y' or 'n': ")
+        if play_again == "n":
+            break
 
-
-
-play_poker()
+play_blackjack()
 
 # #################### Hints #####################
 
