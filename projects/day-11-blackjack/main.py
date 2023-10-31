@@ -113,7 +113,6 @@ def play_blackjack():
 
 play_blackjack()
 
-
 # #################### Hints #####################
 
 # Hint 1: Go to this website and try out the Blackjack game:
